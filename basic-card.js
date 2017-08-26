@@ -12,10 +12,10 @@ function BasicCard( front, back ) {
 
   // add card to log.txt
   fs.appendFile("basic.json", JSON.stringify(question) + ';', "utf8", function(error) {
-      // if there is an error, log the error
-      if (error) {
-          console.log(error);
-      }
+    // if there is an error, log the error
+    if (error) {
+        console.log(error);
+    }
   });
 
   };
