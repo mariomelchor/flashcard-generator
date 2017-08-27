@@ -1,5 +1,6 @@
 // Variables Required Fields
 var basicFlashcard = require('./basic-card.js');
+var clozeFlashcard = require('./cloze-card.js');
 var inquirer = require('inquirer');
 var basicJson = require('./basic.json');
 var clozeJson = require('./cloze.json');
@@ -73,7 +74,42 @@ function addCard() {
     
     // If Cloze type is choosen
     else {
-      console.log('Cloze Choosen');
+      inquirer.prompt([{
+        name: 'front',
+        message: 'What is the question?',
+        validate: function(input) { 
+          if (input === '') { 
+            console.log('Please provide a question'); 
+            return false; 
+          } else {
+            return true;
+          }
+        }
+      }, {
+        name: 'cloze',
+        message: 'What is the answer?',
+        validate: function(input, answers) { 
+         if (input === '') { 
+            console.log('Please provide an answer');
+            return false; 
+          } else if(answers.front.indexOf(input) === -1) {
+            console.log('\n Your answer ' + input + ' - Doesn\'t appear in your question - ' + answers.front + ' - Your answer must be part of the question ');
+            return false;
+          } else {
+            return true;
+          }
+        }
+      }]).then(function(answers) {
+
+        // Call the Constructor and write to json file
+        var newQuestion = clozeFlashcard( answers.front,  answers.cloze );
+        newQuestion.card();
+
+        console.log('\n Cloze Flashcard Added. \n');
+
+        // Run start again
+        start();
+      });
     }
 
   });
