@@ -52,9 +52,6 @@ function addCard() {
          if (input === '') { 
             console.log('Please provide an answer');
             return false; 
-          } else if(answers.front.indexOf(input) === -1) {
-            console.log('\n Your answer ' + input + ' - Doesn\'t appear in your question - ' + answers.front + ' - Your answer must be part of the question ');
-            return false;
           } else {
             return true;
           }
@@ -87,13 +84,13 @@ function addCard() {
         }
       }, {
         name: 'cloze',
-        message: 'What is the answer?',
+        message: 'What is the cloze?',
         validate: function(input, answers) { 
          if (input === '') { 
             console.log('Please provide an answer');
             return false; 
           } else if(answers.front.indexOf(input) === -1) {
-            console.log('\n Your answer ' + input + ' - Doesn\'t appear in your question - ' + answers.front + ' - Your answer must be part of the question ');
+            console.log('\n Your cloze ' + input + ' - Doesn\'t appear in your question - ' + answers.front + ' - Your cloze must be part of the question ');
             return false;
           } else {
             return true;
@@ -117,11 +114,12 @@ function addCard() {
 
 // set counter for questions
 var count = 0;
-// Concat json arrays into single array
-var questionsArray = basicJson.concat(clozeJson);
 
 // function to show cards in json
 function showCards() {
+
+	// Concat json arrays into single array
+	var questionsArray = basicJson.concat(clozeJson);
 
   // loop through the questions array
   if ( count < questionsArray.length ) {
@@ -130,17 +128,17 @@ function showCards() {
     var question;
     var answer;
     if (questionsArray[count].cardType === 'basic') {
-        question = questionsArray[count].front;
-        answer   = questionsArray[count].back;
+			question = questionsArray[count].front;
+			answer   = questionsArray[count].back;
     } 
     else if (questionsArray[count].cardType === 'cloze') {
-        question = questionsArray[count].partial;
-        answer   = questionsArray[count].cloze;
+			question = questionsArray[count].partial;
+			answer   = questionsArray[count].cloze;
     }
 
     inquirer.prompt([{
       name: 'answer',
-      message: question
+      message: question + '\n Answer: '
     }]).then(function(answers) {
 
       if(answer === answers.answer) {
@@ -155,7 +153,7 @@ function showCards() {
       showCards();
     });
   } else {
-    console.log('All Questions have been answered');
+    console.log('All Questions have been answered \n');
     
     // Run start again and reset count
     count = 0;
