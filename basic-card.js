@@ -6,6 +6,12 @@ var fs = require('fs');
 
 // BasicCard Constructor
 function BasicCard( front, back ) {
+
+  // Allows Constructor te be called without new
+  if (!(this instanceof BasicCard)){
+    return new BasicCard( front, back );
+  }
+
   this.front = front;
   this.back = back;
   this.card = function() {
