@@ -29,7 +29,8 @@ function addCard() {
     message: 'What is the answer?'
   }]).then(function(answers) {
 
-    var newQuestion = new basicFlashcard( answers.front,  answers.back );
+    // Call the Constructor and write to json file
+    var newQuestion = basicFlashcard( answers.front,  answers.back );
     newQuestion.card();
 
     // Run the add Card question again
