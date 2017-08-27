@@ -1,6 +1,6 @@
 // Variables Required Fields
-var basicFlashcard = require('./basic-card.js');
-var clozeFlashcard = require('./cloze-card.js');
+var BasicCard = require('./basic-card.js');
+var ClozeCard = require('./cloze-card.js');
 var inquirer = require('inquirer');
 var basicJson = require('./basic.json');
 var clozeJson = require('./cloze.json');
@@ -59,7 +59,7 @@ function addCard() {
       }]).then(function(answers) {
 
         // Call the Constructor and write to json file
-        var newQuestion = basicFlashcard( answers.front,  answers.back );
+        var newQuestion = BasicCard( answers.front,  answers.back );
         newQuestion.card();
 
         console.log('\n Basic Flashcard Added. \n');
@@ -99,7 +99,7 @@ function addCard() {
       }]).then(function(answers) {
 
         // Call the Constructor and write to json file
-        var newQuestion = clozeFlashcard( answers.front,  answers.cloze );
+        var newQuestion = ClozeCard( answers.front,  answers.cloze );
         newQuestion.card();
 
         console.log('\n Cloze Flashcard Added. \n');
