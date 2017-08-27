@@ -4,6 +4,7 @@ module.exports = BasicCard;
 var basicJson = require('./basic.json');
 var fs = require('fs');
 
+// BasicCard Constructor
 function BasicCard( front, back ) {
   this.front = front;
   this.back = back;
