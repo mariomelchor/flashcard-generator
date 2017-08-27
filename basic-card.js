@@ -26,7 +26,7 @@ function BasicCard( front, back ) {
     // Push question to array
     basicJson.push(question);
 
-    // add question variable to basic.json filse
+    // add question variable to basic.json file
     fs.writeFile('basic.json', JSON.stringify( basicJson, null, 2 ), function(error) {
       // if there is an error, log the error
       if (error) {

@@ -32,7 +32,7 @@ function ClozeCard(text, cloze) {
 		// Push question to array
 		clozeJson.push(question);
 
-		// add question variable to basic.json filse
+		// add question variable to basic.json file
 		fs.writeFile('cloze.json', JSON.stringify(clozeJson, null, 2), function (error) {
 			// if there is an error, log the error
 			if (error) {
