@@ -11,6 +11,11 @@ function ClozeCard(text, cloze) {
         return console.log(cloze + ' Doesn\'t appear in ' + text);
     }
 
+    // Allows Constructor te be called without new
+    if (!(this instanceof ClozeCard)) {
+        return new ClozeCard(text, cloze);
+    }
+
     // Create properties
     this.fullText = text;
     this.cloze = cloze;
