@@ -25,7 +25,8 @@ function ClozeCard(text, cloze) {
         // Setup variable
         var question = {
             partial: this.partial,
-            cloze: this.cloze
+            cloze: this.cloze,
+            cardType: 'cloze'
         };
 
         // Push question to array

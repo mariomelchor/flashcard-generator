@@ -125,25 +125,40 @@ function showCards() {
 
   // loop through the questions array
   if ( count < questionsArray.length ) {
+
+    // Setup variables
+    var question;
+    var answer;
+    if (questionsArray[count].cardType === 'basic') {
+        question = questionsArray[count].front;
+        answer   = questionsArray[count].back;
+    } 
+    else if (questionsArray[count].cardType === 'cloze') {
+        question = questionsArray[count].partial;
+        answer   = questionsArray[count].cloze;
+    }
+
     inquirer.prompt([{
       name: 'answer',
-      message: basicJson[count].front
+      message: question
     }]).then(function(answers) {
 
-      if(basicJson[count].back === answers.answer) {
+      if(answer === answers.answer) {
         console.log('That is Correct!');
       } else {
-        console.log('That is Incorrect, The correct answer is ' + basicJson[count].back );
+        console.log('That is Incorrect, The correct answer is ' + answer );
       }
       console.log('\n--------------------------------------------------------------------\n');
 
-      // Run start again
+      // loop throught next card and add to count
       count++;
       showCards();
     });
   } else {
     console.log('All Questions have been answered');
-    // Run start again
+    
+    // Run start again and reset count
+    count = 0;
     start();
   }
 

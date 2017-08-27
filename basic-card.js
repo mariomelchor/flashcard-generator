@@ -19,7 +19,8 @@ function BasicCard( front, back ) {
     // Setup variable
     var question = {
       front: this.front,
-      back: this.back
+      back: this.back,
+      cardType: 'basic'
     };
 
     // Push question to array
