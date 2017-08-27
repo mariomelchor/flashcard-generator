@@ -141,7 +141,7 @@ function showCards() {
       message: question + '\n Answer: '
     }]).then(function(answers) {
 
-      if(answer === answers.answer) {
+      if(answer.toLowerCase() === answers.answer.toLowerCase()) {
         console.log('That is Correct!');
       } else {
         console.log('That is Incorrect, The correct answer is ' + answer );
