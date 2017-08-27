@@ -6,39 +6,39 @@ var fs = require('fs');
 
 // ClozeCard Constructor
 function ClozeCard(text, cloze) {
-    // Checks cloze to see if it is contained in text
-    if (text.indexOf(cloze) === -1) {
-        return console.log(cloze + ' Doesn\'t appear in ' + text);
-    }
+	// Checks cloze to see if it is contained in text
+	if (text.indexOf(cloze) === -1) {
+		return console.log(cloze + ' Doesn\'t appear in ' + text);
+	}
 
-    // Allows Constructor te be called without new
-    if (!(this instanceof ClozeCard)) {
-        return new ClozeCard(text, cloze);
-    }
+	// Allows Constructor te be called without new
+	if (!(this instanceof ClozeCard)) {
+		return new ClozeCard(text, cloze);
+	}
 
-    // Create properties
-    this.fullText = text;
-    this.cloze = cloze;
-    this.partial = this.fullText.replace(this.cloze, '...');
-    this.card = function () {
+	// Create properties
+	this.fullText = text;
+	this.cloze = cloze;
+	this.partial = this.fullText.replace(this.cloze, '...');
+	this.card = function () {
 
-        // Setup variable
-        var question = {
-            partial: this.partial,
-            cloze: this.cloze,
-            cardType: 'cloze'
-        };
+		// Setup variable
+		var question = {
+			partial: this.partial,
+			cloze: this.cloze,
+			cardType: 'cloze'
+		};
 
-        // Push question to array
-        clozeJson.push(question);
+		// Push question to array
+		clozeJson.push(question);
 
-        // add question variable to basic.json filse
-        fs.writeFile('cloze.json', JSON.stringify(clozeJson, null, 2), function (error) {
-            // if there is an error, log the error
-            if (error) {
-                console.log(error);
-            }
-        });
+		// add question variable to basic.json filse
+		fs.writeFile('cloze.json', JSON.stringify(clozeJson, null, 2), function (error) {
+			// if there is an error, log the error
+			if (error) {
+				console.log(error);
+			}
+		});
 
-    };
+	};
 }
